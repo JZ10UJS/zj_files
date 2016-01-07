@@ -3,14 +3,14 @@
 
 import time
 
-l = range(10000000)
+l  = range(10000000)
 l1 = range(1000000)
 l2 = range(100000)
 
 s = time.clock()
-l.insert(0,l.pop(0))
+l.insert(0, l.pop(0))
 e = time.clock()
-print u'10,000,000 pop(0) 耗时:', e-s
+print u'{:,}pop(0) 耗时: {}'.format(10**7,e-s)
 
 s1 = time.clock()
 l1.insert(0,l.pop(0))

@@ -1,5 +1,6 @@
-#!usr/bin/python
+#!/usr/bin/python
 # coding:utf-8
+
 
 class ShoppingCart(object):
     """购物车"""
@@ -45,6 +46,8 @@ class ShoppingCart(object):
         for item in self.items_in_cart:
             sumall += self.items_in_cart[item][0] * self.items_in_cart[item][1]
         return sumall
+
+    
 if __name__ == '__main__':    
     zj = ShoppingCart('ZHANGJIE')
     print zj.items_in_cart

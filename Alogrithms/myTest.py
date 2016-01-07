@@ -14,11 +14,22 @@ def bubble_sort(ul, lo, hi):
                 ul[j], ul[j+1] = ul[j+1], ul[j]
 
 
+def insert_sort(ul, lo, hi):
+    for i in range(lo+1, hi):    # 从第 lo+1 个元素开始，因为第 lo 个无需操作
+        j = i
+        while j > lo:
+            if ul[j] < ul[j-1]:  # 先和sorted部分的 后面比较, 再依次往前
+                ul[j], ul[j-1] = ul[j-1], ul[j]
+                j -= 1
+            else:
+                break
+
+
 def quick_sort(ul, lo, hi):
     "[lo, hi)"
-    if hi-lo <= 5:
-        bubble_sort(ul, lo, hi)
-        return
+    if hi-lo < 5:
+        insert_sort(ul, lo, hi)
+        return    # 一定要 return 啊
 
     pivot = ul[lo]
     i = lo + 1

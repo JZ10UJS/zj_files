@@ -1,11 +1,19 @@
-#!usr/bin/python
+#!/usr/bin/python
 # coding: utf-8
-# 插入排序
-# 时间 n -> n**2
+
 import time
+import random
+
+"""
+插入排序
+时间 n -> n**2
+"""
+
+
 def insertionSort(uslist):
-    """新增列表slist，将uslist.pop(1)与slist元素比较，若<,则插入,break。elif
-        uslist为 全逆序时, 达到n
+    """
+    新增列表slist，将uslist.pop(1)与slist元素比较，若<,则插入,break。elif
+    uslist为 全逆序时, 达到O(n)
     """
     if len(uslist) < 2:return uslist
     slist = [uslist.pop(0)]
@@ -20,39 +28,36 @@ def insertionSort(uslist):
 
     return slist
 
-def insertSort(ul):# 与上一个不同的是, 没有新建一个list, 比较时,从后面往前面比较.
+
+def insertSort(ul, lo, hi):
     """
+    与上一个不同的是, 没有新建一个list, 比较时,从后面往前面比较.
     ul 顺序对越多, 速度越快, shellsort 应该调用此种算法.
     """
-    if len(ul)<2:return ul
-    for i in range(1, len(ul)):
+    for i in range(lo+1, hi):    # 从第 lo+1 个元素开始，因为第 lo 个无需操作
         j = i
-        while j > 0:
-            if ul[i] >= ul[j-1]:  # 先和sorted部分的 后面比较, 在依次往前
-                ul.insert(j, ul.pop(i))
-                break
-            else:
+        while j > lo:
+            if ul[j] < ul[j-1]:  # 先和sorted部分的 后面比较, 再依次往前
+                ul[j], ul[j-1] = ul[j-1], ul[j]
                 j -= 1
-        else:
-            ul.insert(0, ul.pop(i))
-    return ul
+            else:
+                break
                 
                    
 
 if __name__ == '__main__':
-    l1 = [26, 33, 57, 22, 7, 47, 76, 68, 51, 32, 93, 15, 71, 64, 10, 17, 90, 88, 8, 94, 80, 57, 55, 99, 11, 53, 93, 70, 90, 91, 38, 5, 30, 85, 18, 19, 42, 5, 48, 9, 53, 29, 54, 22, 53, 23, 84, 19, 80, 68, 38, 35, 52, 21, 34, 47, 46, 38, 41, 45, 27, 41, 35, 92, 4, 11, 21, 7, 7, 70, 67, 56, 63, 41, 11, 51, 12, 49, 47, 14, 46, 74, 27, 28, 92, 7, 82, 72, 18, 72, 80, 34, 83, 52, 85, 47, 46, 40, 83, 4]
+    l1 = [random.choice(range(1000)) for i in range(1000)]
     l2 = l1[:]
-    l3 = range(10000,0,-1)
-    l4 = l3[:]
 
     s = time.clock()
-    insertionSort(l1)
+    a = insertionSort(l1)
     e1 = time.clock()
     print u'插入排序用时:', e1-s
     
     s2 = time.clock()
-    insertSort(l2)
+    insertSort(l2, 0, len(l2))
     e2 = time.clock()
     print u'插入排序用时:', e2-s2
+
 
 

@@ -23,10 +23,7 @@ def time_it(func):
 
 def bubble_sort(ul, lo, hi):
     "[lo, hi)"
-    length = hi - lo
-    if length < 2:
-        return
-    for i in range(length-1):
+    for i in range(hi-lo-1):
         for j in range(lo, hi-1-i):
             if ul[j] > ul[j+1]:
                 ul[j], ul[j+1] = ul[j+1], ul[j]
@@ -56,10 +53,10 @@ def qSort(ul):  # 当>1000个时，出现错误
     right = ul[i+1:]
     return qSort(left)+[pivot]+qSort(right)
 
-# 固定选择
-def quick_sort(array, lo, hi):
+
+def quick_sort(array, lo, hi):  # 这个算是综合版本吧
     """[lo, hi)"""
-    if hi-lo < 6:
+    if hi-lo < 5:
         bubble_sort(array, lo, hi)
         return
     else:

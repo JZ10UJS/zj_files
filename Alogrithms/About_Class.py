@@ -1,21 +1,25 @@
+#!/usr/bin/python
+# coding: utf-8
+
+
 class Person(object):
     is_alive = True
     deadday = 'not die yet'
+    
     def __init__(self, name, birthday, gender, bloodtype):
         self.name = name
         self.birthday = birthday
         self.gender = gender
         self.bloodtype = bloodtype
 
-    def dying(self,deadday):
+    def dying(self, deadday):
         self.is_alive = False
         self.deadday = deadday
 
 
 class Programer(Person):
-
     def __init__(self,name,program_years,gender,bloodtype,birthday):
-        Person.__init__(self,name,birthday,gender,bloodtype)
+        super(Programer, self).__init__(name, birthday, gender, bloodtype)
         self.program_years = program_years
 
 
@@ -34,7 +38,7 @@ class Coordinate(object):
         return self.y
 
     def __str__(self):
-        return '<' + str(self.getX()) + ',' + str(self.getY()) + '>'
+        return '<%s, %s>' % (self.getX(), self.getY())
     
     def __eq__(self, other):
         if self.getX() == other.getX() and self.getY() == other.getY():

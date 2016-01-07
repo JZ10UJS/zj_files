@@ -32,12 +32,12 @@ def shellSort(arr):
         dist = dist*3 + 1      
     while dist>0:  
         for i in range(dist,len(arr)):  
-            tmp=arr[i]  
-            j=i  
+            tmp = arr[i]  
+            j = i  
             while j>=dist and tmp<arr[j-dist]:  
-                arr[j]=arr[j-dist]  
-                j-=dist  
-            arr[j]=tmp  
+                arr[j] = arr[j-dist]  
+                j -= dist  
+            arr[j] = tmp  
         dist = (dist-1)/3
     return arr
 

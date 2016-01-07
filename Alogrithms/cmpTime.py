@@ -48,7 +48,7 @@ e3 = time.clock()
 print 'insertionSort:', e3-s3
 
 s8 = time.clock()
-insertionSort.insertSort(data8)
+insertionSort.insertSort(data8, 0, len(data8))
 e8 = time.clock()
 print 'insertSort:', e8-s8
 
@@ -59,7 +59,7 @@ e4 = time.clock()
 print 'selectionSort:', e4-s4
 
 s2 = time.clock()
-bubbleSort.bubbleSort(data2)
+bubbleSort.bubble_sort(data2, 0, len(data2))
 e2 = time.clock()
-print 'bubbleSort:', e2-s2
+print 'bubble_sort:', e2-s2
 

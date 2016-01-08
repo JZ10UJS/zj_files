@@ -1,4 +1,4 @@
-#!usr/bin/python
+#!/usr/bin/python
 # -*- utf-8 -*-
 balance = 999999
 annualInterestRate = 0.2

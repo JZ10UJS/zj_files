@@ -1,4 +1,4 @@
-#! usr/bin/python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 blc = 4842   #欠款

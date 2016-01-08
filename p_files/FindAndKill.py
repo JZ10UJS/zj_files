@@ -4,6 +4,7 @@
 import os
 import copy
 import shutil
+
 '''
 def dirList(path):
     filelist = os.listdir(path)
@@ -15,35 +16,40 @@ def dirList(path):
         
 allfile = dirList('f:\\python27\\test')
 '''
-disk = raw_input(u'ÇëÊäÈëÅÌ·û:')
-f_name = raw_input(u'ÇëÊäÈëÎÄ¼ş¼ĞÃû²»ÄÜº¬ÓĞµÄ×Ö·û:')
-doc_name = raw_input(u'ÇëÊäÈëÎÄµµÃû²»ÄÜº¬ÓĞµÄ×Ö·û:')
 
-def delSthif(l,str1,path):  #Èç¹ûÁĞ±ílÖĞµÄÄ³ÏîÔªËØº¬ÓĞ×Ö·û´®str1,ÔòÉ¾³ı¸ÃÔªËØ£¬²¢´òÓ¡ĞÂÁĞ±í
+
+def del_file_if(l, string, path):
+    """
+    å¦‚æœåˆ—è¡¨lä¸­çš„æŸé¡¹å…ƒç´ å«æœ‰ç‰¹å®šå­—ç¬¦ä¸²string,åˆ™åˆ é™¤è¯¥å…ƒç´ ï¼Œå¹¶æ‰“å°æ–°åˆ—è¡¨
+    """
     s = copy.copy(l)
-    count = 0
-    for i in l:
-        if str1 not in i:
-            count += 1
-        else:
-            os.remove(path+'\\'+l[count])
-    #print "Ãû×ÖÖĞº¬ÓĞ'f'µÄÎÄµµÒÑ±»É¾³ı£¬²»°üÀ¨ÎÄ¼ş¼Ğ£¡"
+    for index, file_name in enumerate(l):
+        if string in file_name:
+            os.remove(os.path.join(path, l[count]))
+    print u"åå­—ä¸­å«æœ‰'f'çš„æ–‡æ¡£å·²è¢«åˆ é™¤ï¼Œä¸åŒ…æ‹¬æ–‡ä»¶å¤¹ï¼"
 
 
-def deldirif(var_path,str1):#Èç¹ûÂ·¾¶ÖĞº¬ÓĞ×Ö·û´®str1,É¾³ı¸ÃÂ·¾¶¼°ÆäÏÂÊôÎÄ¼ş
+def del_folder_if(var_path,str1):
+    """
+    å¦‚æœè·¯å¾„ä¸­å«æœ‰å­—ç¬¦ä¸²str1,åˆ é™¤è¯¥è·¯å¾„åŠå…¶ä¸‹å±æ–‡ä»¶
+    """
     if str1 in var_path:
         shutil.rmtree(var_path)
   
-for path,d,filename in os.walk(disk+':\\'):
-    #print path,filename
-    deldirif(path,f_name) #ÏÈwalkÒ»±é£¬½«Ãû³ÆÖĞº¬ÓĞflµÄÎÄ¼ş¼Ğ ½«±»É¾³ı
-for path,d,filename in os.walk(disk+':\\'):
-    delSthif(filename,doc_name,path) #ÔÙwalkÒ»±é£¬½«Ãû³ÆÖĞº¬ÓĞfµÄÎÄµµ£¬½«±»É¾³ı
 
-a = raw_input("Mission Accomplished!\nPress any key to close:")
-while a :
-    break
+def main():
+    disk = raw_input(u'è¯·è¾“å…¥ç›˜ç¬¦:')
+    folder_name = raw_input(u'è¯·è¾“å…¥æ–‡ä»¶å¤¹åä¸èƒ½å«æœ‰çš„å­—ç¬¦:')
+    file_name = raw_input(u'è¯·è¾“å…¥æ–‡æ¡£åä¸èƒ½å«æœ‰çš„å­—ç¬¦:')
 
+    for path, d, filename in os.walk(disk+':\\'):
+        print path, filename
+        deldirif(path,f_name) #å…ˆwalkä¸€éï¼Œå°†åç§°ä¸­å«æœ‰flçš„æ–‡ä»¶å¤¹ å°†è¢«åˆ é™¤
+        
+    for path, d, filename in os.walk(disk+':\\'):
+        delSthif(filename,doc_name,path) #å†walkä¸€éï¼Œå°†åç§°ä¸­å«æœ‰fçš„æ–‡æ¡£ï¼Œå°†è¢«åˆ é™¤
+
+    print "Mission Accomplished!"
     
 
 

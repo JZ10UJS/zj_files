@@ -4,8 +4,8 @@
 import poplib
 from email.parser import Parser
 
-eamil = '18796082665@163.com'
-password = 'zhangjie714hh'
+eamil = 'foo@163.com'
+password = 'foobar'
 pop3_server = 'pop3.163.com'
 
 server = poplib.POP3(pop3_server)

@@ -17,7 +17,6 @@ print(l1,count)
 '''
 
 def hailstone(n):
-    global  l2
     count1 = 1
     while n>1:
         l2.append(n)
@@ -26,6 +25,7 @@ def hailstone(n):
         else:
             n //= 2
         count1 +=1
+    l2.append(1)
     return count1
 l2 = []
-print(hailstone(42), l2)
+print(hailstone(128918), l2)

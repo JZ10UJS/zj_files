@@ -6,8 +6,8 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.utils import formatdate
 
-from_addr ='18796082665@163.com'
-password = 'zhangjie714hh'
+from_addr ='foo@163.com'
+password = 'foobarpass'
 smtp_server = 'smtp.163.com'
 
 to_addr = raw_input('To eamil: ')

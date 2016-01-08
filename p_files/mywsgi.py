@@ -1,4 +1,4 @@
-#!usr/bin/python
+#!/usr/bin/python
 # coding:utf-8
 
 from wsgiref.simple_server import make_server

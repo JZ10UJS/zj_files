@@ -18,7 +18,7 @@ for vec in num_per:
         if num1+num2 == suma:
             counter +=1
             ok.append(vec)
-            '''print counter,num1,'+',num2,'=',suma''' #这是输出有哪些数字符合要求
+            print counter,num1,'+',num2,'=',suma #这是输出有哪些数字符合要求
 
 end = time.clock()
 print end-start

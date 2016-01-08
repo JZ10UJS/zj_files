@@ -14,7 +14,7 @@ for i in range(203,987):
         if sumall>1000:
             l = str(sumall)+str(i)+str(j)
             if fun1(str1,l):
-                '''print i,'+',j,'=',sumall'''
+                print i,'+',j,'=',sumall
                 count += 1
    
 end = time.time()

@@ -289,11 +289,38 @@ class Solution(object):
                 i += 1
 
         return strs[0][:i]
-    
+
+    def threeSumClosest(self, nums, target):
+        """
+        16. 3Sum Closest
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        if len(nums) < 3: return 0
+        nums.sort()
+
+        ans = 0
+        last_ans = sum(nums[:3])
+
+        for i in range(len(nums)-2):
+            j = i+1
+            k = len(nums)-1
+
+            while j < k:
+                ans = nums[i] + nums[j] + nums[k]
+                if abs(target-ans) <= abs(target-last_ans):
+                    last_ans = ans
+                if ans <= target:
+                    j += 1
+                else:
+                    k -= 1
+
+        return last_ans
 
 
 
 if __name__ == '__main__':
     test = Solution()
-    print test.romanToInt('XIV')
+    print test.threeSumClosest([1,2,4,8,16,32,64,128], 82)
         

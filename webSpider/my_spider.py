@@ -13,14 +13,14 @@ HEADERS = {
     
     }
 task_queue = Queue.Queue()
+
 lock = threading.Lock()
 count = 0
+
 file_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),'webpic')
 if os.path.exists(file_dir):
     shutil.rmtree(file_dir)
-
 os.mkdir(file_dir)
-
 
 
 def getHtml(url):
@@ -47,7 +47,6 @@ def getPicLinks(html):
     print 'getting the pic links...'
     my_soup = BeautifulSoup(html)
     tag_links = my_soup.findAll('img')
-    global links
     links = map(lambda x: x.get('src'), tag_links)
     print 'Total find %d Pics' % len(links)
     print 'getting Success...\n'
@@ -98,7 +97,7 @@ def main():
         my_thread.start()
         
     task_queue.join()
-    raw_input('Done!\nAny Key to Quit...')
+    raw_input('Done!\nPress any key to Quit...')
     
 
 if __name__ == '__main__':

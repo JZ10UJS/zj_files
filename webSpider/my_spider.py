@@ -69,9 +69,9 @@ class MyThread(threading.Thread):
             link = self.queue.get()
             self.lock.release()
             try:
-                r = requests.get(link, headers=HEADERS, stream=True)
+                r = requests.get(link, headers=HEADERS, stream=True, timeout=10)
             except requests.ConnectionError, e:
-                print 'can not get this picture'
+                print 'can not get this picture', 
                 self.queue.task_done()
                 continue
             else:

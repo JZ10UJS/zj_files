@@ -30,6 +30,6 @@ def binsearch(num, slist):  #sorted list
 if __name__ == '__main__':
     print binsearch(9,[1,3,5,9,9,10,11])
     print binsearch(8,[1,3,5,9,9,10,11])
-    print binsearch(-1,[1,3,5,9,9,10,11])
+    print binsearch(4,[1,3,5,9,9,10,11])
     print binsearch(14,[1,3,5,9,9,10,11])
     

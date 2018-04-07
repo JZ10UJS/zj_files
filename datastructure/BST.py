@@ -24,9 +24,9 @@ class BinarySearchTree(BinTree):
         if node:
             r = node
         elif _hot.data < val:
-            r = self.insert_as_right(_hot, val)
+            r = self._insert_as_right(_hot, val)
         else:
-            r = self.insert_as_left(_hot, val)
+            r = self._insert_as_left(_hot, val)
         return r
 
     def remove(self, val):

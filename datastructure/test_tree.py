@@ -22,11 +22,11 @@ class BinTreeNodeTest(unittest.TestCase):
     def setUp(self):
         self.r = node = BinNode(14)
         self.t = t = BinTree(node)
-        t.insert_as_left(node, 6)
-        t.insert_as_right(node, 20)
-        t.insert_as_left(node.left, 4)
-        t.insert_as_right(node.left, 10)
-        t.insert_as_right(node.left.left, 2)
+        t._insert_as_left(node, 6)
+        t._insert_as_right(node, 20)
+        t._insert_as_left(node.left, 4)
+        t._insert_as_right(node.left, 10)
+        t._insert_as_right(node.left.left, 2)
         return node, t
 
     def test_002_2_child_height(self):
@@ -42,17 +42,17 @@ class BinTreeNodeTest(unittest.TestCase):
         t = BinTree(BinNode(12))
         self.assertEqual(t.size, 1)
         node = BinNode(12)
-        node.insert_as_right(BinNode(20))
-        node.right.insert_as_left(BinNode(13))
+        node._insert_as_right(BinNode(20))
+        node.right._insert_as_left(BinNode(13))
         self.assertEqual(node.size(), 3)
 
     def test_006_travel_pre(self):
         node = BinNode(14)
         t = BinTree(node)
-        t.insert_as_left(node, 12)
-        t.insert_as_right(node, 13)
-        t.insert_as_left(node.left, 14)
-        t.insert_as_right(node.left.left, 14)
+        t._insert_as_left(node, 12)
+        t._insert_as_right(node, 13)
+        t._insert_as_left(node.left, 14)
+        t._insert_as_right(node.left.left, 14)
         l = []
         t.travel_pre_recursive(node, visit=l.append)
         l2 = []
@@ -175,17 +175,17 @@ class AVLTest(unittest.TestCase):
         self.basic = [2, 3, 5, 6, 10, 14, 15, 20, 30, 35, 50, 99]
         r = self.r = BinNode(20)
         t = self.t = AVL(self.r)
-        t.insert_as_left(r, 10)
-        t.insert_as_right(r, 50)
-        t.insert_as_left(r.left, 5)
-        t.insert_as_right(r.left, 15)
-        t.insert_as_left(r.right, 30)
-        t.insert_as_right(r.right, 99)
-        t.insert_as_left(t.search(5), 3)
-        t.insert_as_right(t.search(5), 6)
-        t.insert_as_left(t.search(3), 2)
-        t.insert_as_left(t.search(15), 14)
-        t.insert_as_right(t.search(30), 35)
+        t._insert_as_left(r, 10)
+        t._insert_as_right(r, 50)
+        t._insert_as_left(r.left, 5)
+        t._insert_as_right(r.left, 15)
+        t._insert_as_left(r.right, 30)
+        t._insert_as_right(r.right, 99)
+        t._insert_as_left(t.search(5), 3)
+        t._insert_as_right(t.search(5), 6)
+        t._insert_as_left(t.search(3), 2)
+        t._insert_as_left(t.search(15), 14)
+        t._insert_as_right(t.search(30), 35)
 
     def test_001_in_order(self):
         self.assertEqual(self.t.get_in_order(), self.basic)

@@ -75,9 +75,9 @@ class AVL(BinarySearchTree):
 
         # 不调用tree的insert_as_*，避免更新全部祖先的height
         if _hot.data < val:
-            r = _hot.insert_as_right(val)
+            r = _hot._insert_as_right(val)
         else:
-            r = _hot.insert_as_left(val)
+            r = _hot._insert_as_left(val)
         self._size += 1
         g = r.parent
         while g:
@@ -85,13 +85,22 @@ class AVL(BinarySearchTree):
                 # find the first ancestor which is not avl balanced
                 # handle it and break;
                 self.rotate_at(self.taller_child(self.taller_child(g)))
-                self.update_height(g)
+                self._update_height(g)
                 break
             else:
                 # 此时更新祖先的height
-                self.update_height(g)
+                self._update_height(g)
             g = g.parent
         return r
 
     def remove(self, val):
-        pass
+        node, _hot = self._search(val)
+        if not node:
+            return False
+        self.remove_at(node, _hot, _update_height=False)
+        while _hot:
+            if not self.avl_balanced(_hot):
+                self.rotate_at(self.taller_child(self.taller_child(_hot)))
+            self._update_height(_hot)
+            _hot = _hot.parent
+        return True

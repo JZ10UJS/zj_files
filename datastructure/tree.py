@@ -22,11 +22,11 @@ class BinNode(Node):
         self.left = left
         self.right = right
 
-    def insert_as_left(self, val):
+    def _insert_as_left(self, val):
         node = self.left = self.__class__(val, parent=self)
         return node
 
-    def insert_as_right(self, val):
+    def _insert_as_right(self, val):
         node = self.right = self.__class__(val, parent=self)
         return node
 
@@ -58,7 +58,7 @@ class BinTree:
         self._size = 1
         self._root = root
 
-    def update_height(self, node):
+    def _update_height(self, node):
         """
         update the height of this node
         :param node:
@@ -67,14 +67,14 @@ class BinTree:
         res = node.height = max(node_height(node.left), node_height(node.right)) + 1
         return res
 
-    def update_height_above(self, node):
+    def __update_height_above(self, node):
         """
         update the height of this node, so to it's parents
         :param node:
         :return:
         """
         while node:
-            self.update_height(node)
+            self._update_height(node)
             node = node.parent
 
     @property
@@ -88,20 +88,20 @@ class BinTree:
     def root(self):
         return self._root
 
-    def insert_as_right(self, node, val):
+    def _insert_as_right(self, node, val):
         self._size += 1
-        node.insert_as_right(val)
-        self.update_height_above(node)
+        node._insert_as_right(val)
+        self.__update_height_above(node)
         return node.right
 
-    def insert_as_left(self, node, val):
+    def _insert_as_left(self, node, val):
         self._size += 1
-        node.insert_as_left(val)
-        self.update_height_above(node)
+        node._insert_as_left(val)
+        self.__update_height_above(node)
         return node.left
 
-    def remove_at(self, child, parent, update_height=True):
-        relation = parent.left is child and 'left' or 'right'
+    def remove_at(self, child, parent, _update_height=True):
+        relation = 'left' if parent.left is child else 'right'
         if child.left is None:
             setattr(parent, relation, child.right)
             succ = child.right
@@ -118,8 +118,8 @@ class BinTree:
                 parent.left = succ
         if succ:
             succ.parent = parent
-        if update_height:
-            self.update_height_above(parent)
+        if _update_height:
+            self.__update_height_above(parent)
         self._size -= 1
         return succ
 
